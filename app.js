@@ -19,6 +19,17 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", __dirname + "/views");
 // default extension is `jade`
 app.set("view engine", "jade");
+
+// Add Access Control Allow Origin headers
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use("/", indexRouter);
 app.use("/content/text/markov/", markovRouter);
 // catch 404 and forward to error handler

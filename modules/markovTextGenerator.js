@@ -6,6 +6,7 @@ let generator = {
 };
 function _getText(initObj) {
   initObj = !initObj ? {} : initObj;
+  // destructure initObj with default values if they are missing
   const {
     SeedName: seedName = "git",
     SeedType: seedType = "txt",
@@ -15,8 +16,16 @@ function _getText(initObj) {
   console.log(`SeedName ${seedName}`);
   const filePath = "./data/text/" + seedName + ".txt";
   return new Promise((resolve, reject) => {
+    // train the MarkovChain with the supplied path
     MarkovChain.trainTxt(filePath, "\n").then(() => {
-      resolve(_getTextToLength(MAX_TEXT_LENGTH));
+      // get text to the required length
+      console.log(`${itemCount} lines of text required`);
+      const returnObj = {};
+      returnObj.items = [];
+      for (let i = 0; i < itemCount; i++) {
+        returnObj.items.push({ txt: _getTextToLength(MAX_TEXT_LENGTH) });
+      }
+      resolve(returnObj);
     });
   });
 }
