@@ -1,6 +1,6 @@
 const MarkovChain = require("markov-chain-nlg");
-const MAX_TEXT_LENGTH = 240;
-const DEFAULT_TEXT_LENGTH = 120;
+const MAX_TEXT_LENGTH = 160;
+const DEFAULT_TEXT_LENGTH = 80;
 let generator = {
   getText: _getText,
 };
