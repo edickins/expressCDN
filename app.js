@@ -6,7 +6,9 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var indexRouter = require("./routes/index");
 var markovRouter = require("./routes/markov");
+var asciiRouter = require("./routes/ascii");
 var app = express();
+
 // view engine setup
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -32,6 +34,8 @@ app.use((req, res, next) => {
 
 app.use("/", indexRouter);
 app.use("/content/text/markov/", markovRouter);
+app.use("/content/text/ascii/", asciiRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error("Not Found");
