@@ -1,36 +1,34 @@
+const fs = require("fs");
+const path = require("path");
+
 let generator = {
   getText: _getText,
 };
 function _getText(initObj) {
+  // destructure initObj with default values if they are missing
+  const {
+    fileName = "standard",
+    format = "json",
+    folderName = "ascii",
+  } = initObj;
   console.log("ascii get text");
-  return {
-    items: [
-      {
-        txt:
-          " _       _                         _       _                                              _",
-      },
-      {
-        txt:
-          "| |__   | |   ___    ___   _ __   | |__   | |   ___     ___    _ __        _ __     ___  | |_",
-      },
-      {
-        txt:
-          "| '_ \\  | |  / _ \\  / _ \\ | '_ \\  | '_ \\  | |  / _ \\   / _ \\  | '_ \\      | '_ \\   / _ \\ | __|",
-      },
-      {
-        txt:
-          "| |_) | | | |  __/ |  __/ | |_) | | |_) | | | | (_) | | (_) | | |_) |  _  | | | | |  __/ | |_",
-      },
-      {
-        txt:
-          "|_.__/  |_|  \\___|  \\___| | .__/  |_.__/  |_|  \\___/   \\___/  | .__/  (_) |_| |_|  \\___|  \\__|",
-      },
-      {
-        txt:
-          "                          |_|                                 |_|",
-      },
-    ],
-  };
+
+  try {
+    const data = fs.readFileSync(
+      path.resolve(__dirname) +
+        "/../data/" +
+        folderName +
+        "/" +
+        fileName +
+        "." +
+        format,
+      "utf8"
+    );
+    console.log(data);
+    return JSON.parse(data);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 module.exports = generator;
