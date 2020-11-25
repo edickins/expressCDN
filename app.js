@@ -33,8 +33,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/", indexRouter);
-app.use("/content/text/markov/", markovRouter);
-app.use("/content/text/ascii/", asciiRouter);
+app.use("/text/markov/", markovRouter);
+app.use("/text/ascii/", asciiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
