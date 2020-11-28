@@ -24,7 +24,6 @@ function _getText(initObj) {
         format,
       "utf8"
     );
-    console.log(data);
     return JSON.parse(data);
   } catch (err) {
     console.error(err);
